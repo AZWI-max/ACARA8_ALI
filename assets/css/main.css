@@ -22,8 +22,8 @@
 :root { 
   --background-color: #f3f4f6; /* Background color for the entire website, including individual sections */
   --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #37517e; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #3143c6; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --heading-color: #5da0e2; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #4668a2; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -31,7 +31,7 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #47b2e4; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #4668a2; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
@@ -46,11 +46,11 @@
 }
 
 .dark-background {
-  --background-color: #434be4;
+  --background-color: #5083f3;
   --default-color: #ffffff;
-  --heading-color: #181414;
+  --heading-color: #ffffff;
   --surface-color: #4668a2;
-  --contrast-color: #fef9f9;
+  --contrast-color: #ffffff;
 }
 
 /* Smooth scroll */
@@ -1754,13 +1754,14 @@ section,
   color: var(--contrast-color);
 }
 
-.pricing .featured {
-  border-top-color: var(--accent-color);
+.pricing .pricing-item {
+  cursor: pointer;
+  transition: border-top-color 0.3s ease;
 }
 
-.pricing .featured .buy-btn {
-  background: var(--accent-color);
-  color: var(--contrast-color);
+/* Garis biru hanya muncul pada kartu yang dipilih */
+.pricing .pricing-item.active {
+  border-top-color: var(--accent-color);
 }
 
 @media (max-width: 992px) {
@@ -3619,7 +3620,7 @@ section,
     }
     .indocement-info-card h3 { margin: 0 0 12px; color: #37517e; font-size: 23px; }
     .indocement-info-card p { margin-bottom: 0; }
-    .about-subheading { color: #250ebd; margin: 0 0 16px; font-size: 25px; }
+    .about-subheading { color: #37517e; margin: 0 0 16px; font-size: 25px; }
     .history-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
     .history-card { border-top: 3px solid #47b2e4; }
     .history-year { display: inline-block; margin-bottom: 12px; color: #47b2e4; font-size: 14px; font-weight: 700; letter-spacing: .4px; }
@@ -3637,17 +3638,413 @@ section,
       .indocement-info-card { padding: 20px; }
     }
     
-/* Google Maps */
+/* =========================================
+   GOOGLE MAPS - CONTACT SECTION
+========================================= */
 #contact .map-container {
-    width: 100%;
-    height: 400px;
-    overflow: hidden;
-    border-radius: 10px;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 #contact .map-container iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* =========================================
+   CONTACT SECTION LAYOUT
+========================================= */
+#contact {
+  width: 100%;
+  overflow: visible;
+}
+
+#contact .container {
+  width: 100%;
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+#contact .row {
+  align-items: stretch;
+}
+
+#contact .info-wrap,
+#contact .php-email-form {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#contact .info-wrap,
+#contact .php-email-form {
+  background-color: #ffffff;
+}
+
+#contact .php-email-form input,
+#contact .php-email-form textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mengatur posisi menu navigasi */
+#header .navbar {
+  margin-left: auto;
+}
+
+#header .navbar ul {
+  gap: 25px;
+  padding-right: 15px;
+}
+
+/* Mengatur posisi logo perusahaan pada Hero */
+#hero .hero-img {
+  transform: translateX(25px);
+}
+
+@media (max-width: 991px) {
+  #hero .hero-img {
+    transform: none;
+  }
+
+  #contact .container {
+    max-width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #contact .map-container {
+    height: 300px;
+  }
+
+  #contact .info-wrap,
+  #contact .php-email-form {
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  #contact .map-container {
+    height: 250px;
+  }
+
+  #contact .info-wrap,
+  #contact .php-email-form {
+    padding: 20px;
+  }
+}
+#hero {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    background-color: #477ff0;
+}
+
+
+
+
+/* Ukuran logo di sebelah kiri tulisan INDOCEMENT */
+.header .logo img {
+  display: block;
+  max-height: 42px;
+  width: auto;
+  max-width: 90px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.header .logo {
+  gap: 4px;
+}
+
+@media (max-width: 575px) {
+  .header .logo img {
+    max-height: 34px;
+    max-width: 70px;
+  }
+
+  .header .logo h1 {
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================================
+   HEADER: tampil di awal, sembunyi saat scroll ke bawah,
+   dan muncul kembali saat scroll ke atas.
+   ========================================================= */
+.index-page .header {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.index-page .header.header-hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Logo PT Indocement di sebelah kiri tulisan */
+.header .logo img {
+  display: block;
+  max-height: 42px;
+  max-width: 90px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.header .logo {
+  gap: 4px;
+}
+
+@media (max-width: 575px) {
+  .header .logo img {
+    max-height: 34px;
+    max-width: 70px;
+  }
+
+  .header .logo h1 {
+    font-size: 22px;
+  }
+}
+
+
+
+/* Galeri produk: samakan ukuran area gambar dan tinggi kartu */
+#portfolio .portfolio-item {
+  display: flex;
+  height: 100%;
+}
+
+#portfolio .portfolio-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}
+
+#portfolio .portfolio-content > img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  object-position: center;
+  padding: 14px;
+  background: #fff;
+}
+
+#portfolio .portfolio-info {
+  min-height: 105px;
+  flex: 1;
+}
+
+@media (max-width: 767px) {
+  #portfolio .portfolio-content > img {
+    height: 230px;
+  }
+}
+
+@media (max-width: 575px) {
+  #portfolio .portfolio-content > img {
+    height: 210px;
+  }
+}
+
+
+/* =========================================================
+   GALERI PRODUK: grid rapi, gambar seragam, kartu tidak terpotong
+   ========================================================= */
+#portfolio .isotope-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+#portfolio .portfolio-item {
+  display: flex;
+  height: auto !important;
+  margin-bottom: 24px;
+}
+
+#portfolio .portfolio-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 390px;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}
+
+#portfolio .portfolio-content > img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  flex: 0 0 260px;
+  object-fit: contain;
+  object-position: center;
+  padding: 15px;
+  background: #fff;
+}
+
+#portfolio .portfolio-info {
+  position: relative !important;
+  inset: auto !important;
+  opacity: 1 !important;
+  min-height: 105px;
+  flex: 1;
+  padding: 15px;
+  background: #fff;
+}
+
+#portfolio .portfolio-info h4,
+#portfolio .portfolio-info p {
+  padding-right: 0;
+}
+
+@media (max-width: 767px) {
+  #portfolio .portfolio-content {
+    min-height: 360px;
+  }
+  #portfolio .portfolio-content > img {
+    height: 230px;
+    flex-basis: 230px;
+  }
+}
+
+@media (max-width: 575px) {
+  #portfolio .portfolio-content {
+    min-height: 340px;
+  }
+  #portfolio .portfolio-content > img {
+    height: 210px;
+    flex-basis: 210px;
+  }
+}
+
+
+
+/* Galeri produk: pengelompokan visual dan ukuran kartu seragam */
+#portfolio .isotope-container { display:flex; flex-wrap:wrap; align-items:stretch; }
+#portfolio .portfolio-item { display:flex; align-items:stretch; height:auto !important; margin-bottom:24px; }
+#portfolio .portfolio-content { display:flex; flex-direction:column; width:100%; min-height:390px; height:100%; overflow:hidden; border:1px solid rgba(30,55,90,.06); border-radius:10px; background:#fff; box-shadow:0 2px 12px rgba(30,55,90,.045); }
+#portfolio .portfolio-content > img { display:block; width:100%; height:260px; flex:0 0 260px; object-fit:contain; object-position:center; padding:18px; background:#fff; }
+#portfolio .portfolio-info { position:relative !important; inset:auto !important; opacity:1 !important; min-height:105px; flex:1; padding:14px 15px; background:#fff; }
+#portfolio .portfolio-info h4, #portfolio .portfolio-info p { padding-right:0; margin-bottom:5px; }
+#portfolio .portfolio-info h4 { font-size:15px; line-height:1.35; }
+#portfolio .portfolio-info p { font-size:13px; line-height:1.45; }
+@media (max-width:767px) { #portfolio .portfolio-content { min-height:360px; } #portfolio .portfolio-content > img { height:230px; flex-basis:230px; } }
+@media (max-width:575px) { #portfolio .portfolio-content { min-height:340px; } #portfolio .portfolio-content > img { height:210px; flex-basis:210px; } }
+
+
+
+/* Galeri: susunan visual per baris, tiga kartu sejajar */
+#portfolio .isotope-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+#portfolio .portfolio-item {
+  display: flex;
+  align-items: stretch;
+  height: auto !important;
+  margin-bottom: 24px;
+}
+#portfolio .portfolio-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 390px;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba(30, 55, 90, 0.06);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(30, 55, 90, 0.045);
+}
+#portfolio .portfolio-content > img {
+  display: block;
+  width: 100%;
+  height: 260px;
+  flex: 0 0 260px;
+  object-fit: contain;
+  object-position: center;
+  padding: 18px;
+  background: #fff;
+}
+#portfolio .portfolio-info {
+  position: relative !important;
+  inset: auto !important;
+  opacity: 1 !important;
+  min-height: 105px;
+  flex: 1;
+  padding: 14px 15px;
+  background: #fff;
+}
+#portfolio .portfolio-info h4,
+#portfolio .portfolio-info p {
+  padding-right: 0;
+  margin-bottom: 5px;
+}
+#portfolio .portfolio-info h4 { font-size: 15px; line-height: 1.35; }
+#portfolio .portfolio-info p { font-size: 13px; line-height: 1.45; }
+@media (max-width: 767px) {
+  #portfolio .portfolio-content { min-height: 360px; }
+  #portfolio .portfolio-content > img { height: 230px; flex-basis: 230px; }
+}
+@media (max-width: 575px) {
+  #portfolio .portfolio-content { min-height: 340px; }
+  #portfolio .portfolio-content > img { height: 210px; flex-basis: 210px; }
+}
+
+
+
+/* Galeri: tepat 3 kolom ke kanan, lalu berlanjut ke baris bawah */
+#portfolio .isotope-container {
+  position: relative;
+  width: 100%;
+}
+
+#portfolio .portfolio-item {
+  box-sizing: border-box;
+  width: 33.333333% !important;
+  max-width: 33.333333% !important;
+  padding: 0 12px;
+  margin-bottom: 24px;
+}
+
+#portfolio .portfolio-content {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 991.98px) {
+  #portfolio .portfolio-item {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  #portfolio .portfolio-item {
     width: 100% !important;
-    height: 100% !important;
-    border: 0;
-    display: block;
+    max-width: 100% !important;
+  }
 }
