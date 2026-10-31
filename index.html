@@ -666,6 +666,7 @@
     var errorMessage = contactForm.querySelector(".error-message");
     var sentMessage = contactForm.querySelector(".sent-message");
     var submitButton = document.getElementById("contact-submit");
+    var hideSentMessageTimer = null;
 
     contactForm.addEventListener("submit", function (event) {
       event.preventDefault();
@@ -673,6 +674,13 @@
       loadingMessage.style.display = "block";
       errorMessage.style.display = "none";
       sentMessage.style.display = "none";
+
+      // Batalkan timer notifikasi sebelumnya jika ada.
+      if (hideSentMessageTimer !== null) {
+        clearTimeout(hideSentMessageTimer);
+        hideSentMessageTimer = null;
+      }
+
       submitButton.disabled = true;
 
       var formData = new FormData(contactForm);
@@ -694,6 +702,12 @@
           sentMessage.textContent = "Pesan berhasil dikirim. Terima kasih!";
           sentMessage.style.display = "block";
           contactForm.reset();
+
+          // Hilangkan notifikasi otomatis setelah 3 detik tanpa refresh.
+          hideSentMessageTimer = setTimeout(function () {
+            sentMessage.style.display = "none";
+            hideSentMessageTimer = null;
+          }, 3000);
         } else {
           errorMessage.textContent = data.message || "Pesan gagal dikirim. Silakan coba lagi.";
           errorMessage.style.display = "block";
